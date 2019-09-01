@@ -1,20 +1,32 @@
 # mirrors-china
 Mirrors and registries in China to seedup your package installation.
 
-由于许多包的存放服务器在国外，国内安装比较慢，因此本文总结了常见的包（例如Python包，Linux不同发行版的包）在国内的开源镜像，加速你的下载，提高安装体验。下面总结了PyPi，Anacoda，NPM， Docker，RubyGems和Linux的国内镜像。
+由于GFW的影响，很多软件包在墙内安装比较慢，因此本文总结了常见的包（例如Python包，Linux不同发行版的包）在国内的开源镜像，加速你的下载，提高安装体验。下面总结了PyPi，Anacoda，NPM， Docker，RubyGems和Linux的国内镜像。
+
+注意；镜像主要使用华为云为主进行修改，原始的可以参考 https://github.com/vra/mirros-china
+
 
 ## How to use
 ```bash
-git clone https://github.com/vra/mirrors-china
+git clone https://github.com/hhao99/mirrors-china
 cd mirror-china
 # update files in configs dir
 # copy config files to destination or run shell scripts to make them take effect 
 ``` 
 
 ## PyPi 加速
-临时加速可以用下面的命令：
+临时使用
+运行以下命令使用华为开发云软件源安装软件包：
 ```bash
-pip install -i https://path/to/pypi/mirror package
+pip install -i https://mirrors.huaweicloud.com/repository/pypi/simple <some-package>
+```
+设为默认
+Pip的配置文件为用户根目录下的：~/.pip/pip.conf（Windows路径为：C:\Users\<UserName>\pip\pip.ini）, 您可以配置如下内容：
+```bash
+[global]
+index-url = https://mirrors.huaweicloud.com/repository/pypi/simple
+trusted-host = mirrors.huaweicloud.com
+timeout = 120   
 ```
 永久使用的话，需要修改配置文件。对于系统级别的修改，增加下面的配置文件到`/etc/pip.conf`，如果只是自己使用，修改`~/.pip/pip.conf`。
 ```bash
@@ -42,7 +54,6 @@ pip install -i https://path/to/pypi/mirror package
 #[global]
 #    index-url=https://mirrors.163.com/pypi/simple
 #    trusted-host=mirrors.163.com
-```
 
 本文中默认用的中科大的源实际使用的时候，选择自己访问最快的**一个**镜像就可以了，将别的镜像设置注释掉或者删掉。
 
